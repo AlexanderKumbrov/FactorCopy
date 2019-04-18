@@ -15,19 +15,9 @@ import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
-//        String fileSource ="C:\\Users\\user\\AppData\\Roaming\\Factorio\\saves\\_autosave2.zip";
-//        String fileDest = "C:\\Users\\user\\Google Диск\\_autosave2.zip";
-//
-//        try {
-//            Path source = Paths.get(fileSource), dest = Paths.get(fileDest);
-//            Files.copy(source, dest);
-//        }catch (IOException ex){
-//            System.out.println("Input / Output Error");
-//        }
-
-        CopyThreed copyThreed = new CopyThreed();
-        copyThreed.start();
+            CopyThreed copyThreed = new CopyThreed();
+            copyThreed.start();
     }
 }
