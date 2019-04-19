@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class CopyThreed extends Thread {
+public class CopyThread extends Thread {
     private final static String  ACCESS_TOKEN = "u0qEwtoWYfAAAAAAAAAADFYQ74iWzPQlZ6tfs49ET58fEJKs3KIrKuhNyPKUwklb";
     public void run () {
 
